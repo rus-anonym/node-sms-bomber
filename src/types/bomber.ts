@@ -1,6 +1,10 @@
 import { CountryCode, PhoneNumber } from "libphonenumber-js";
 import Service from "../lib/service";
 
+export type TServiceProcess = (
+	phone: PhoneNumber,
+) => Promise<unknown> | unknown;
+
 export interface IBomberOptions {
 	/**
 	 * Target number
@@ -18,5 +22,5 @@ export interface IBomberOptions {
 
 export interface IServiceOptions {
 	country: CountryCode;
-	process(phone: PhoneNumber): Promise<unknown> | unknown;
+	process: TServiceProcess;
 }
