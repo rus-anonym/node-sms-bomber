@@ -9,7 +9,7 @@ class Manager {
 	/**
 	 * Array with services
 	 */
-	public _servicesList: Service[] = [];
+	public list: Service[] = [];
 
 	/**
 	 * Method for adding a new service
@@ -17,8 +17,8 @@ class Manager {
 	 * @returns Number of loaded services
 	 */
 	public add(service: Service): number {
-		this._servicesList.push(service);
-		return this._servicesList.length;
+		this.list.push(service);
+		return this.list.length;
 	}
 
 	/**
