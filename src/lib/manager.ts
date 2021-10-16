@@ -5,7 +5,11 @@ import Service from "./service";
 
 class Manager {
 	private _isLoadService: boolean = false;
-	private _servicesList: Service[] = [];
+
+	/**
+	 * Array with services
+	 */
+	public _servicesList: Service[] = [];
 
 	/**
 	 * Method for adding a new service
@@ -43,6 +47,4 @@ class Manager {
 	}
 }
 
-const manager = new Manager();
-
-export default manager;
+export default Manager;
