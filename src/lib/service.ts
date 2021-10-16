@@ -2,6 +2,7 @@ import {
 	CountryCode,
 	isValidPhoneNumber,
 	parsePhoneNumber,
+	PhoneNumber,
 } from "libphonenumber-js";
 
 import { IServiceOptions, TServiceProcess } from "../types/bomber";
@@ -19,13 +20,15 @@ class Service {
 		return isValidPhoneNumber(phone, this.countryCode);
 	}
 
-	public async init(phone: string) {
-		const phoneNumber = parsePhoneNumber(phone, this.countryCode);
+	public async init(phone: string | PhoneNumber) {
+		if (typeof phone === "string") {
+			phone = parsePhoneNumber(phone, this.countryCode);
+		}
 
-		if (phoneNumber.country !== this.countryCode) {
+		if (phone.country !== this.countryCode) {
 			throw new Error("Phone is not valid");
 		} else {
-			await this._process(phoneNumber);
+			await this._process(phone);
 		}
 	}
 }
