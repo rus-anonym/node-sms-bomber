@@ -31,15 +31,26 @@ class Manager {
 		}
 		this._isLoadService = true;
 		const dirname = path.resolve(__dirname, "../services") + "/";
-		const servicesList = fs.readdirSync(dirname);
+		return await this._loadService(dirname);
+	}
+
+	private async _loadService(path: string): Promise<number> {
+		const servicesList = fs.readdirSync(path);
 		let count = 0;
 
 		for (const pathToService of servicesList) {
-			const { default: service } = await import(dirname + pathToService);
+			const servicePath = path + pathToService;
+			const info = fs.statSync(servicePath);
 
-			if (service instanceof Service) {
-				this.add(service);
-				++count;
+			if (info.isDirectory()) {
+				count += await this._loadService(servicePath + "/");
+			} else {
+				const { default: service } = await import(servicePath);
+
+				if (service instanceof Service) {
+					this.add(service);
+					++count;
+				}
 			}
 		}
 
