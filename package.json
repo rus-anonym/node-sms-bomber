@@ -1,7 +1,7 @@
 {
 	"name": "node-sms-bomber",
 	"version": "1.0.0",
-	"main": "./dist/cli.js",
+	"main": "./dist/main.js",
 	"license": "MIT",
 	"bin": {
 		"node-sms-bomber": "./dist/cli.js"
