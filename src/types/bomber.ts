@@ -1,8 +1,10 @@
+import { HttpsProxyAgent } from "https-proxy-agent";
 import { CountryCode, PhoneNumber } from "libphonenumber-js";
 import Service from "../lib/service";
 
 export type TServiceProcess = (
 	phone: PhoneNumber,
+	additional: IServiceInitAdditionalData,
 ) => Promise<unknown> | unknown;
 
 export interface IBomberOptions {
@@ -21,6 +23,11 @@ export interface IBomberOptions {
 }
 
 export interface IServiceOptions {
+	isSupportProxyAgent?: boolean;
 	country: CountryCode;
 	process: TServiceProcess;
+}
+
+export interface IServiceInitAdditionalData {
+	proxyAgent?: HttpsProxyAgent;
 }
