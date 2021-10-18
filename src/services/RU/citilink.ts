@@ -9,6 +9,13 @@ export default new Service({
 			httpsAgent: additional.proxyAgent,
 			method: "POST",
 			url: `https://www.citilink.ru/registration/confirm/phone/+${phone.number}/`,
+			headers: {
+				...(additional.userAgent
+					? {
+							"User-Agent": additional.userAgent,
+					  }
+					: {}),
+			},
 		});
 	},
 });

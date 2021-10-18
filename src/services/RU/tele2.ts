@@ -11,6 +11,13 @@ export default new Service({
 			data: {
 				sender: "Tele2",
 			},
+			headers: {
+				...(additional.userAgent
+					? {
+							"User-Agent": additional.userAgent,
+					  }
+					: {}),
+			},
 		});
 	},
 });

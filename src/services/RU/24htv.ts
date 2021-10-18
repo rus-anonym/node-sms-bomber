@@ -12,6 +12,13 @@ export default new Service({
 			data: {
 				phone: phone.number.toString(),
 			},
+			headers: {
+				...(additional.userAgent
+					? {
+							"User-Agent": additional.userAgent,
+					  }
+					: {}),
+			},
 		});
 	},
 });

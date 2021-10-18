@@ -30,4 +30,5 @@ export interface IServiceOptions {
 
 export interface IServiceInitAdditionalData {
 	proxyAgent?: HttpsProxyAgent;
+	userAgent?: string;
 }
