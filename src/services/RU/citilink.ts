@@ -2,6 +2,7 @@ import Service from "../../lib/service";
 import axios from "axios";
 
 export default new Service({
+	type: "SMS",
 	isSupportProxyAgent: true,
 	country: "RU",
 	async process(phone, additional) {
